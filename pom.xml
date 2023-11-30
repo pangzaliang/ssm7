@@ -25,6 +25,7 @@
         <spring.version>6.1.1</spring.version>
         <fastjson2.version>2.0.42</fastjson2.version>
         <slf4j.version>2.0.9</slf4j.version>
+        <junit.version>5.10.1</junit.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,23 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <!--SpringTest框架-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--junit测试框架-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <!--fastjson2支持-->
         <dependency>
