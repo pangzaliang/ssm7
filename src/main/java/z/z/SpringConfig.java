@@ -19,9 +19,8 @@ import java.util.List;
 @EnableWebMvc // 开启webmvc
 @Configuration
 @ComponentScan("z.z")
-@PropertySource("classpath:application.properties") // 加载配置文件
+@PropertySource(value = "classpath:application.properties", encoding = "UTF-8") // 加载配置文件
 public class SpringConfig implements WebMvcConfigurer {
-
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

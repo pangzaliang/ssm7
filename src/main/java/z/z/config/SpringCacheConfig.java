@@ -31,10 +31,14 @@ public class SpringCacheConfig {
      */
     @Bean
     public CacheManager cacheManager() {
+        // 创建名称为mvc6_cache的Caffeine缓存管理器
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager("mvc6_cache");
         caffeineCacheManager.setCaffeine(Caffeine.newBuilder()
+                // 设置缓存的过期时间(秒)
                 .expireAfterWrite(Duration.ofSeconds(expireAfterWrite))
+                // 设置缓存初始大小
                 .initialCapacity(initialCapacity)
+                // 设置缓存最大值
                 .maximumSize(maximumSize));
         return caffeineCacheManager;
     }

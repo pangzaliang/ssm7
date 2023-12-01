@@ -25,6 +25,14 @@ public class AspectjAop {
 
     }
 
+    @Pointcut("execution(* z.z.service..*.*(..))")
+    public void pcService(){
+    }
+
+    @Pointcut("pcService() || pcController()")
+    public void combinedPointcut(){
+    }
+
     /**
      * Controller环绕通知
      * @param point 切入点
@@ -58,8 +66,7 @@ public class AspectjAop {
                 LOGGER.info("方法名: " + methodName +
                         ". 方法入参: " +  arrayToString(methodArgs) +
                         ". 方法运行耗时: " + executionTime + "ms" +
-                        ". 方法返回结果: " + result +
-                        ". 方法抛出异常: " + null);
+                        ". 方法返回结果: " + result);
             }
             // 不为空,则代表方法出现异常
             else {
