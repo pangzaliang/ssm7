@@ -1,5 +1,6 @@
 package z.z.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
@@ -16,6 +17,9 @@ import java.util.List;
  */
 @Configuration
 public class RestTemplateConfig {
+
+    @Value("${restTemplate.readTimeOut}")
+    private Integer restTemplateReadTimeOut;
 
     /**
      * 注册RestTemplate组件 使用JDK11新功能HttpClient
@@ -42,7 +46,7 @@ public class RestTemplateConfig {
     public JdkClientHttpRequestFactory clientHttpRequestFactory(){
         JdkClientHttpRequestFactory httpRequestFactory = new JdkClientHttpRequestFactory();
         // 设置超时时间为3分钟
-        httpRequestFactory.setReadTimeout(Duration.ofMinutes(3));
+        httpRequestFactory.setReadTimeout(Duration.ofMinutes(restTemplateReadTimeOut));
         return httpRequestFactory;
     }
 }

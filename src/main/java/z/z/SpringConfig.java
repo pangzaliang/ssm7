@@ -3,10 +3,7 @@ package z.z;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -28,6 +25,7 @@ import java.util.List;
 @EnableAsync //启动异步任务
 @EnableAspectJAutoProxy // 开启spring aop
 @EnableCaching //开启spring 缓存
+@PropertySource(value = "classpath:application.properties") // 加载配置文件
 public class SpringConfig implements WebMvcConfigurer {
 
 
