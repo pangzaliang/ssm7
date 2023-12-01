@@ -6,8 +6,10 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
+@EnableAspectJAutoProxy // 开启spring aop
 @Aspect //标记此类为切面类
 @Component // 注册为组件
 public class AspectjAop {
