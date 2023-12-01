@@ -5,11 +5,10 @@ import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageC
 import org.springframework.context.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,8 +19,6 @@ import java.util.List;
 @EnableWebMvc // 开启webmvc
 @Configuration
 @ComponentScan("z.z")
-@EnableScheduling //启动定时任务
-@EnableAsync //启动异步任务
 @PropertySource("classpath:application.properties") // 加载配置文件
 public class SpringConfig implements WebMvcConfigurer {
 
@@ -55,16 +52,8 @@ public class SpringConfig implements WebMvcConfigurer {
         return jsonObject;
     }
 
-    /**
-     * 线程池任务执行程序
-     * @return ThreadPoolTaskExecutor
-     */
     @Bean
-    public ThreadPoolTaskExecutor taskExecutor () {
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(5); // 核心线程为5
-        taskExecutor.setMaxPoolSize(10); // 最大线程为10
-        taskExecutor.setQueueCapacity(25); // 设置队列容量
-        return taskExecutor;
+    public MultipartResolver multipartResolver() {
+        return new StandardServletMultipartResolver();
     }
 }
