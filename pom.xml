@@ -12,13 +12,14 @@
     <!--项目名称为ssm6-->
     <name>ssm6</name>
 
+    <!--自定义属性-->
     <properties>
+        <java.version>17</java.version>
         <!--指定maven编译文件编码-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--指定maven编译版本-->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!--指定依赖版本-->
         <servlet.version>6.0.0</servlet.version>
@@ -26,8 +27,11 @@
         <fastjson2.version>2.0.42</fastjson2.version>
         <slf4j.version>2.0.9</slf4j.version>
         <junit.version>5.10.1</junit.version>
+        <aspectj.version>1.9.20.1</aspectj.version>
+        <caffeine.version>3.1.8</caffeine.version>
     </properties>
 
+    <!--项目依赖项-->
     <dependencies>
         <!--servlet API-->
         <dependency>
@@ -48,7 +52,6 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <!--SpringTest框架-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -56,7 +59,6 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-
         <!--junit测试框架-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -64,8 +66,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-
         <!--fastjson2支持-->
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
@@ -78,28 +78,28 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
         <!--aspectj织入代码-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.20.1</version>
+            <version>${aspectj.version}</version>
         </dependency>
-
+        <!--caffeine缓存框架-->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
-            <version>3.1.8</version>
+            <version>${caffeine.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.5</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>commons-fileupload</groupId>-->
+<!--            <artifactId>commons-fileupload</artifactId>-->
+<!--            <version>1.5</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 
+    <!--项目构建时配置-->
     <build>
         <!--最终打包名称-->
         <finalName>ssm6</finalName>
