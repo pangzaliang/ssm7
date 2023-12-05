@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import z.z.config.mapper.HiMapper;
+import z.z.mapper.HiMapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +15,12 @@ import java.util.Map;
 @RestController
 public class HiController {
 
+
+    private final HiMapper mapper;
     @Autowired
-    private HiMapper mapper;
+    public HiController(HiMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @GetMapping("/hi")
     public Map<String, Object> hi () {

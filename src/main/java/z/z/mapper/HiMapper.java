@@ -1,11 +1,12 @@
-package z.z.config.mapper;
+package z.z.mapper;
 
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-// @Mapper
+@Mapper
 public interface HiMapper {
 
     @Select("select * from hi")
