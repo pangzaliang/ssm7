@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import z.z.util.ResultVo;
 
 import java.util.Date;
 
+/**
+ * 自定义异常处理程序
+ */
 @RestController
 @RestControllerAdvice
 public class CustomExceptionHandler {
@@ -20,16 +24,20 @@ public class CustomExceptionHandler {
      * @return JSONObject
      */
     @GetMapping("/")
-    public JSONObject hi () {
+    public ResultVo<JSONObject> home() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("time", new Date());
-        jsonObject.put("name,", "ssm6");
-        jsonObject.put("version,", "1.0");
-        return jsonObject;
+        jsonObject.put("name", "ssm6");
+        jsonObject.put("version", "1.0");
+        return ResultVo.successResult(jsonObject);
     }
 
+    /**
+     * 处理DispatcherServlet找不到请求的处理程序异常
+     * @return ResponseEntity
+     */
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<String> notFound404 () {
-        return new ResponseEntity<>("404", HttpStatus.NOT_FOUND);
+    public ResponseEntity<ResultVo<Object>> notFound404() {
+        return new ResponseEntity<>(ResultVo.failResult("404"), HttpStatus.NOT_FOUND);
     }
 }
