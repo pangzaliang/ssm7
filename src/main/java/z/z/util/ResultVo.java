@@ -1,7 +1,4 @@
 package z.z.util;
-
-import java.io.Serializable;
-
 public class ResultVo<T>{
 
     // 是否成功
