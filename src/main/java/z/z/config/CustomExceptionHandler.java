@@ -38,6 +38,6 @@ public class CustomExceptionHandler {
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ResultVo<Object>> notFound404() {
-        return new ResponseEntity<>(ResultVo.failResult("404"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ResultVo.failResult("请求的接口不存在!"), HttpStatus.NOT_FOUND);
     }
 }
