@@ -26,8 +26,8 @@ public class RestTemplateConfig {
      * @return RestTemplate
      */
     @Bean
-    public RestTemplate restTemplate(){
-        RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
+    public RestTemplate restTemplate(JdkClientHttpRequestFactory httpRequestFactory){
+        RestTemplate restTemplate = new RestTemplate(httpRequestFactory);
         // 配置StringHttpMessageConverter,使其默认的字符集为UTF-8
         List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
         for (HttpMessageConverter<?> messageConverter : messageConverters) {
