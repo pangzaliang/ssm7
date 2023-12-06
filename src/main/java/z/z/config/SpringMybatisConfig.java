@@ -3,9 +3,7 @@ package z.z.config;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -41,12 +39,23 @@ public class SpringMybatisConfig {
         return dataSource;
     }
 
+    /**
+     * 配置SQL会话工厂
+     * @param dataSource 数据源
+     * @return SqlSessionFactory
+     */
     @Bean
     public SqlSessionFactory sqlSessionFactory (HikariDataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         return bean.getObject();
     }
+
+    /**
+     * 配置数据源事务管理器
+     * @param dataSource 数据源
+     * @return DataSourceTransactionManager
+     */
     @Bean
     public DataSourceTransactionManager transactionManager (DataSource dataSource) {
         DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
