@@ -15,12 +15,9 @@ import java.util.Map;
 @RestController
 public class HiController {
 
-
-    private final HiMapper mapper;
     @Autowired
-    public HiController(HiMapper mapper) {
-        this.mapper = mapper;
-    }
+    private HiMapper mapper;
+
 
     @GetMapping("/hi")
     public Map<String, Object> hi () {

@@ -29,6 +29,10 @@
         <junit.version>5.10.1</junit.version>
         <aspectj.version>1.9.20.1</aspectj.version>
         <caffeine.version>3.1.8</caffeine.version>
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
+        <mybatis.version>3.5.14</mybatis.version>
+        <mysql.version>8.2.0</mysql.version>
+        <HikariCP.version>5.1.0</HikariCP.version>
         <openpdf.version>1.3.33</openpdf.version>
         <poi.version>5.2.5</poi.version>
         <rome.version>2.1.0</rome.version>
@@ -94,44 +98,44 @@
             <artifactId>caffeine</artifactId>
             <version>${caffeine.version}</version>
         </dependency>
-
+        <!--MybatisSpring框架-->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>3.0.3</version>
+            <version>${mybatis-spring.version}</version>
         </dependency>
+        <!--Mybatis框架-->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.5.14</version>
+            <version>${mybatis.version}</version>
         </dependency>
+        <!--SpringJDBC框架-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>6.1.1</version>
+            <version>${spring.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+        <!--Mysql驱动-->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>8.2.0</version>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+        <!--HikariCP数据库连接池框架-->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>5.1.0</version>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.slf4j</groupId>-->
-<!--                    <artifactId>slf4j-api</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+            <version>${HikariCP.version}</version>
+            <exclusions>
+                <!--排除自带的slf4j日志门面框架-->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
-
-
-
 
 
         <!--openPDF框架-->

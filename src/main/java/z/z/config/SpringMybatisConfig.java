@@ -1,7 +1,6 @@
 package z.z.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,7 +16,7 @@ import javax.sql.DataSource;
  * MyBatis配置
  */
 @Configuration(proxyBeanMethods = false)
-//@MapperScan(value = "z.z.mapper")
+@MapperScan("z.z.mapper")
 public class SpringMybatisConfig {
 
     /**
@@ -32,52 +31,28 @@ public class SpringMybatisConfig {
         dataSource.setUsername("root");
         dataSource.setPassword("root");
 
-//        dataSource.setAutoCommit(Boolean.TRUE); //自动提交事务
-//        dataSource.setConnectionTimeout(180 * 1000); //连接超时时间
-//        dataSource.setIdleTimeout(30 * 1000); //闲置后抛弃
-//        dataSource.setKeepaliveTime(0);// 检查一次连接的活性
-//        dataSource.setMinimumIdle(5);// 核心连接数
-//        dataSource.setMaximumPoolSize(10); // 最大连接数
-//        dataSource.setPoolName("数据库连接池-");
+        dataSource.setAutoCommit(Boolean.TRUE); //自动提交事务
+        dataSource.setConnectionTimeout(180 * 1000); //连接超时时间
+        dataSource.setIdleTimeout(30 * 1000); //闲置后抛弃
+        dataSource.setKeepaliveTime(0);// 检查一次连接的活性
+        dataSource.setMinimumIdle(5);// 核心连接数
+        dataSource.setMaximumPoolSize(10); // 最大连接数
+        dataSource.setPoolName("数据库连接池-");
         return dataSource;
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory (HikariDataSource dataSource) throws Exception {  //直接参数得到Bean对象
+    public SqlSessionFactory sqlSessionFactory (HikariDataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        //bean.setConfigLocation();
         return bean.getObject();
     }
-
     @Bean
-    public SqlSessionTemplate sqlSession (SqlSessionFactory sqlSessionFactory) throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory);
+    public DataSourceTransactionManager transactionManager (DataSource dataSource) {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(dataSource);
+        return transactionManager;
     }
-
-    @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer () {
-        MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
-        scannerConfigurer.setBasePackage("z.z.mapper");
-        scannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        return scannerConfigurer;
-    }
-
-//    public VendorDatabaseIdProvider databaseIdProvider () {
-//        VendorDatabaseIdProvider databaseIdProvider = new VendorDatabaseIdProvider();
-//        databaseIdProvider.setProperties();
-//    }
-
-//    @Bean
-//    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-//        return new SqlSessionTemplate(sqlSessionFactory);
-//    }
-//    @Bean
-//    public DataSourceTransactionManager transactionManager (DataSource dataSource) {
-//        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-//        transactionManager.setDataSource(dataSource);
-//        return transactionManager;
-//    }
 
 
 }
