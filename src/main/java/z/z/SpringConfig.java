@@ -9,10 +9,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import z.z.aop.RequestInterceptor;
+import z.z.service.PDFView;
+import z.z.service.PdfViewResolver;
 
 import java.util.List;
 
@@ -48,5 +51,15 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
+    }
+
+    @Bean
+    public PDFView pdfView () {
+        return new PDFView();
+    }
+
+    @Bean
+    public ViewResolver pdfViewResolver() {
+        return new PdfViewResolver();
     }
 }
