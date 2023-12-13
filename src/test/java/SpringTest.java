@@ -3,10 +3,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.web.client.RestTemplate;
 import z.z.SpringConfig;
+import z.z.mapper.HiMapper;
 import z.z.service.cacheService.TestCacheDemo;
 import z.z.service.taskService.TaskServiceDemo;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.List;
+import java.util.Map;
 
 @SpringJUnitWebConfig(SpringConfig.class)
 public class SpringTest {
@@ -19,6 +21,9 @@ public class SpringTest {
 
     @Autowired
     private TaskServiceDemo taskServiceDemo;
+
+    @Autowired
+    private HiMapper mapper;
 
 
     @Test
@@ -38,14 +43,15 @@ public class SpringTest {
 //        System.out.println(testCacheDemo.list2());
 //        System.out.println(testCacheDemo.list2());
 
-        int count = 10;
-
-        CountDownLatch countDownLatch = new CountDownLatch(count);
-
-        for (int i = 0; i < count; i++) {
-            taskServiceDemo.asyncMethod(countDownLatch);
-        }
-        countDownLatch.await();
-
+//        int count = 10;
+//
+//        CountDownLatch countDownLatch = new CountDownLatch(count);
+//
+//        for (int i = 0; i < count; i++) {
+//            taskServiceDemo.asyncMethod(countDownLatch);
+//        }
+//        countDownLatch.await();
+        List<Map<String, Object>> maps = mapper.selectAll();
+        maps.forEach(System.out::println);
     }
 }
