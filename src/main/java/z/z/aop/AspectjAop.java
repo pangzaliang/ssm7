@@ -20,7 +20,6 @@ public class AspectjAop {
     /**
      * 切入点为controller包下的任意包任意类任意方法
      */
-    // TODO 对controller切入,准备实现织入输出日志(HTTP header,body,IP,浏览器)
     @Pointcut("execution(* z.z.controller..*.*(..))")
     public void pcController(){
 
