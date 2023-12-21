@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class PDFView extends AbstractPdfView {
     @Override
-    protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) {
         Map<String,String> userData = (Map<String,String>) model.get("userData");
 
         Table table = new Table(2);
