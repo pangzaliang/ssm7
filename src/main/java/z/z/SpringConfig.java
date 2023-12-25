@@ -1,12 +1,10 @@
 package z.z;
 
-import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
+
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -17,7 +15,6 @@ import z.z.aop.RequestInterceptor;
 import z.z.service.PDFView;
 import z.z.service.PdfViewResolver;
 
-import java.util.List;
 
 //TODO modelAndView
 @EnableWebMvc // 开启webmvc
@@ -26,10 +23,10 @@ import java.util.List;
 @PropertySource(value = "classpath:application.properties", encoding = "UTF-8") // 加载配置文件
 public class SpringConfig implements WebMvcConfigurer {
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(jsonHttpMessageConverter());
-    }
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        converters.add(jsonHttpMessageConverter());
+//    }
 
 
     @Override
@@ -37,16 +34,16 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.addInterceptor(new RequestInterceptor());
     }
 
-    /**
-     * 配置jsonHttp消息转换器
-     * @return HttpMessageConverter
-     */
-    @Bean
-    public HttpMessageConverter<Object> jsonHttpMessageConverter() {
-        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        converter.setSupportedMediaTypes(List.of(MediaType.APPLICATION_JSON));
-        return converter;
-    }
+//    /**
+//     * 配置jsonHttp消息转换器
+//     * @return HttpMessageConverter
+//     */
+//    @Bean
+//    public HttpMessageConverter<Object> jsonHttpMessageConverter() {
+//        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+//        converter.setSupportedMediaTypes(List.of(MediaType.APPLICATION_JSON));
+//        return converter;
+//    }
 
     @Bean
     public MultipartResolver multipartResolver() {

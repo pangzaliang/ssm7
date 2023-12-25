@@ -25,6 +25,7 @@
         <servlet.version>6.0.0</servlet.version>
         <spring.version>6.1.1</spring.version>
         <fastjson2.version>2.0.42</fastjson2.version>
+        <jackson.version>2.16.0</jackson.version>
         <slf4j.version>2.0.9</slf4j.version>
         <junit.version>5.10.1</junit.version>
         <aspectj.version>1.9.20.1</aspectj.version>
@@ -76,10 +77,17 @@
             <scope>test</scope>
         </dependency>
         <!--fastjson2支持-->
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.fastjson2</groupId>-->
+<!--            <artifactId>fastjson2-extension-spring6</artifactId>-->
+<!--            <version>${fastjson2.version}</version>-->
+<!--        </dependency>-->
+
+        <!--jackson-->
         <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2-extension-spring6</artifactId>
-            <version>${fastjson2.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <!--slf4j简单实现-->
         <dependency>
