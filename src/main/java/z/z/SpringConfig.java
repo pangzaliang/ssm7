@@ -23,27 +23,10 @@ import z.z.service.PdfViewResolver;
 @PropertySource(value = "classpath:application.properties", encoding = "UTF-8") // 加载配置文件
 public class SpringConfig implements WebMvcConfigurer {
 
-//    @Override
-//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        converters.add(jsonHttpMessageConverter());
-//    }
-
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new RequestInterceptor());
     }
-
-//    /**
-//     * 配置jsonHttp消息转换器
-//     * @return HttpMessageConverter
-//     */
-//    @Bean
-//    public HttpMessageConverter<Object> jsonHttpMessageConverter() {
-//        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-//        converter.setSupportedMediaTypes(List.of(MediaType.APPLICATION_JSON));
-//        return converter;
-//    }
 
     @Bean
     public MultipartResolver multipartResolver() {
