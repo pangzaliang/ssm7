@@ -20,7 +20,7 @@ public class AspectjAop {
     /**
      * 切入点为controller包下的任意包任意类任意方法
      */
-    @Pointcut("execution(* z.z.controller..*.*(..))")
+    @Pointcut("execution(* z.z.restcontroller..*.*(..))")
     public void pcController(){
 
     }

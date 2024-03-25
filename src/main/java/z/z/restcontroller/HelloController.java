@@ -1,17 +1,14 @@
-package z.z.controller.fuck;
+package z.z.restcontroller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
-
-@RequestMapping("/fuck")
-@Controller
-public class FuckController {
+@RequestMapping("/hello")
+@RestController
+public class HelloController {
 
     @GetMapping("/hi")
     public Map<String, Object> hi () {
@@ -21,10 +18,10 @@ public class FuckController {
     }
 
     @GetMapping("/hi2")
-    public ModelAndView hi2 () {
+    public Map<String, Object> hi2 () {
         Map<String, Object> hashMap = new HashMap<>();
         hashMap.put("name", "fuck ");
-        return new ModelAndView(new MappingJackson2JsonView(), hashMap);
+        return hashMap;
     }
 
     @GetMapping("/hi3")
