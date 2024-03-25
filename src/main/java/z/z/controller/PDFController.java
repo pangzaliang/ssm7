@@ -3,6 +3,7 @@ package z.z.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+import z.z.view.PDFView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class PDFController {
         userData.put("2", "Suresh");
         userData.put("3", "Ramesh");
         userData.put("4", "Naresh");
-        return new ModelAndView("PDFView","userData",userData);
-
+        // return new ModelAndView(new PDFView(),"userData",userData);
+        return new ModelAndView(new PDFView(),userData);
     }
 }

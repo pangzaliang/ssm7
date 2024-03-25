@@ -1,4 +1,4 @@
-package z.z.service;
+package z.z.view;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Table;
@@ -12,15 +12,14 @@ import java.util.Map;
 public class PDFView extends AbstractPdfView {
     @Override
     protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) {
-        Map<String,String> userData = (Map<String,String>) model.get("userData");
 
         Table table = new Table(2);
         table.addCell("Roll No");
         table.addCell("Name");
 
-        for (Map.Entry<String, String> entry : userData.entrySet()) {
+        for (Map.Entry<String, Object> entry : model.entrySet()) {
             table.addCell(entry.getKey());
-            table.addCell(entry.getValue());
+            table.addCell(entry.getValue().toString());
         }
         document.add(table);
     }

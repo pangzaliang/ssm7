@@ -7,16 +7,16 @@ import org.springframework.context.annotation.PropertySource;
 
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import z.z.aop.RequestInterceptor;
-import z.z.service.PDFView;
-import z.z.service.PdfViewResolver;
 
 
-//TODO modelAndView
+// modelAndView
+// 注意
+// 当controller  被 @RestController 修饰时，只会进行HttpMessageConverter(HTTP消息转换器)判断
+// 当            被 @Controller 修饰时，需要配置对应的ModelAndView(视图控制器)
 @EnableWebMvc // 开启webmvc
 @Configuration
 @ComponentScan("z.z")
@@ -33,13 +33,4 @@ public class SpringConfig implements WebMvcConfigurer {
         return new StandardServletMultipartResolver();
     }
 
-    @Bean
-    public PDFView pdfView () {
-        return new PDFView();
-    }
-
-    @Bean
-    public ViewResolver pdfViewResolver() {
-        return new PdfViewResolver();
-    }
 }
