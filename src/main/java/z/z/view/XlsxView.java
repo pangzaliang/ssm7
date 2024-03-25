@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class XlsxView extends AbstractXlsxView {
     @Override
-    protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) {
 
         Sheet sheet001 = workbook.createSheet("sheet001");
 
